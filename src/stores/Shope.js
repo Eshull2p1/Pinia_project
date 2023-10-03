@@ -1,5 +1,5 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
 
 export const customerShop = defineStore('customer', () => {
   const Product = ref([
@@ -14,4 +14,4 @@ export const customerShop = defineStore('customer', () => {
   ]);
 
   return { Product };
-})
+});

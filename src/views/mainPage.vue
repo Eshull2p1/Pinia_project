@@ -14,9 +14,10 @@
 </template>
 
 <script setup>
-import {  computed } from 'vue';
-import { useStore } from 'pinia'; // Import useStore from Pinia
+import { ref, computed } from 'vue';
+import { useStore } from 'pinia';
 import { customerShop } from '../stores/Shope';
+
 
 const store = useStore(customerShop); // Access the Pinia store
 const travelList = computed(() => store.Product); // Use computed to access the store's Product
