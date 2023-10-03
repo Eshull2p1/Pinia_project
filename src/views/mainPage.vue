@@ -14,13 +14,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from 'pinia';
-import { customerShop } from '../stores/Shope';
 
 
-const store = useStore(customerShop); // Access the Pinia store
-const travelList = computed(() => store.Product); // Use computed to access the store's Product
+import { customerShop } from '@/stores/Shope'; 
+
+const store = customerShop(); 
+const travelList = store.Product 
 
 </script>
 
