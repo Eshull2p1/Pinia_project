@@ -19,9 +19,7 @@
             <td>{{ item.Name }}</td>
 
             <td>
-              <button @click="decCount(item)">-</button>
               {{ item.count_tb }}
-              <button @click="inCount(item)">+</button>
             </td>
 
             <td>{{ item.Totalprice }}</td>
@@ -33,25 +31,25 @@
           </tr>
         </tbody>
       </table>
+      <div>
+        <p>Total: {{ cartSum }}</p>
+      </div>
     </div>
     <div class="table_total" v-if="BookingList.length == 0">
-    <h1>ว่าง</h1>
+      <h1>ว่าง</h1>
     </div>
   </div>
 </template>
 
 <script setup>
 import { customerShop } from '@/stores/Shope'
-
+import { computed } from 'vue'
 const store = customerShop()
 const BookingList = store.cartItems
 const cancel = (item) => {
   store.cancelItem(item.Name)
 }
-const inCount = (item) => {
-  store.incrementCartItem(item.Name)
-}
-const decCount = (item) => {
-  store.decrementCartItem(item.Name)
-}
+const cartSum = computed(() => {
+  return BookingList.reduce((acc, item) => acc + item.Totalprice, 0);
+});
 </script>

@@ -8,7 +8,6 @@ import { bootstrap } from 'bootstrap/dist/js/bootstrap'
 
 // Create the Pinia store
 const pinia = createPinia()
-
 // Create the Vue app instance and use the Pinia store
 const app = createApp(App)
 app.use(bootstrap)

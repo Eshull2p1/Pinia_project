@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+
+import { customerShop } from '@/stores/Shope'
+
+const store = customerShop()
+const travelList = store.cartItems
+const ClearCart = () => {
+  store.clearCart()
+}
+</script>
 
 <template>
   <nav class="menu-bar">
@@ -12,9 +21,10 @@
     </div>
     <p class="namePage">กับข้าวกับเบียร์</p>
     <div class="group">
-      <p class="item">Review</p>
+      <a href="/cart"> <p class="item">สินค้า  {{ travelList.length }} ชิ้น</p></a>
+      <a href="/"  @click="ClearCart"> <p class="item">รีเซ็ต</p></a>
       <div class="item">
-        <a href="/cart">
+        <a href="/oder">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
