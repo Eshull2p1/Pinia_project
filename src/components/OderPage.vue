@@ -1,6 +1,6 @@
 <!-- PageCart.vue -->
 <template>
-  <div>
+  <div class="PageCart">
     <div class="table_total" v-if="BookingList.length > 0">
       <h1>รายการที่สั่ง</h1>
       <table class="table" v-if="BookingList.length > 0">
@@ -17,26 +17,21 @@
           <tr v-for="(item, index) in BookingList" :key="index">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ item.Name }}</td>
-
             <td>
               {{ item.count_tb }}
             </td>
-
             <td>{{ item.Totalprice }}</td>
             <td>
-              <button type="button" class="btn btn-outline-danger" @click="cancel(item)">
-                ยกเลิก
-              </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div>
-        <p>Total: {{ cartSum }}</p>
+      <div class="total">
+        <p>ราคารวม : {{ cartSum }} บาท</p>
       </div>
     </div>
-    <div class="table_total" v-if="BookingList.length == 0">
-      <h1>ว่าง</h1>
+    <div class="table_total2" v-if="BookingList.length == 0">
+    <h1>ยังไม่มีรายการใดๆในขณะนี้</h1>
     </div>
   </div>
 </template>
@@ -46,10 +41,28 @@ import { customerShop } from '@/stores/Shope'
 import { computed } from 'vue'
 const store = customerShop()
 const BookingList = store.cartItems
-const cancel = (item) => {
-  store.cancelItem(item.Name)
-}
 const cartSum = computed(() => {
   return BookingList.reduce((acc, item) => acc + item.Totalprice, 0);
 });
 </script>
+
+<style scoped>
+.table_total2{
+  height: 440px;
+  text-align: center;
+}
+.PageCart{
+  padding: 55px;
+  background-color: white;
+  margin-inline: 50px;
+}
+.total{
+  font-size: large;
+  font-weight: bolder;
+  padding-top: 15px;
+  padding-inline: 10px;
+  max-width: fit-content;
+  border: 3px solid;
+  border-radius: 10px;
+}
+</style>
